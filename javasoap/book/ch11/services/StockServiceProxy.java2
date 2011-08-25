@@ -1,0 +1,30 @@
+package javasoap.book.ch11.services;
+
+import javasoap.book.ch9.services.ProxyQuote;
+import javasoap.book.ch11.glueclient.*;
+
+public class StockServiceProxy {
+
+   public ProxyQuote getStockQuote(String symbol) {
+    
+      ProxyQuote pq = new ProxyQuote();
+      try {	
+         CorpDataServiceImpl proxy = 
+             new CorpDataServiceImpl();
+         CorpDataServiceSoap_Stub stub =
+             (CorpDataServiceSoap_Stub)proxy.getCorpDataServiceSoap();
+         stub._setTargetEndpoint("http://mindstrm.com:8004/glue/urn:CorpDataServices");	
+         Quote quote = stub.getQuote(symbol);
+         
+         pq.setLast(quote.get_lastPrice());
+         pq.setVol(quote.get_volume());
+         pq.setTime(quote.get_timeStamp());
+         pq.setDiff(quote.get_change());
+      } 
+      catch (Exception ex) {	
+         ex.printStackTrace();	
+      }
+
+      return pq;	
+   }
+}

@@ -1,0 +1,11 @@
+package javasoap.book.ch7;
+import org.apache.soap.SOAPException;
+public class SampleFaultService {
+   public SampleFaultService() {
+   }
+   public int generateFault() 
+        throws SOAPException {
+      throw new SOAPException("SOAP-ENV:Server", 
+                          "Data Feed Unavailable");
+   }
+}

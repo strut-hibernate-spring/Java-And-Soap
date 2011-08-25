@@ -1,0 +1,19 @@
+package javasoap.book.ch7;
+import org.apache.soap.SOAPException;
+import java.util.Hashtable;
+public class SampleFaultService {
+   public SampleFaultService() {
+   }
+   public int generateFault() 
+        throws SOAPException {
+      FeedException e = new FeedException("SOAP-ENV:Server", 
+                             "Data Feed Unavailable");
+      Hashtable detail = new Hashtable();
+      detail.put("reasonCode", "199");
+      detail.put("reasonDescription", "Power Outage");
+      detail.put("alternateProvider", "www.mindstrm.com");
+      detail.put("alternateContact", "rob@mindstrm.com");
+      e.setDetail(detail);
+      throw e;
+   }
+}

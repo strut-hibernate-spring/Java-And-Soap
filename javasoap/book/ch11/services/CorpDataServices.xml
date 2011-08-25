@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<configuration	
+  xmlns="http://java.sun.com/jax-rpc-ri/xrpcc-config">	
+  <rmi name="CorpDataServicesProxy"	
+    targetNamespace="http://mindstrm.com/wsdl"	
+    typeNamespace="http://mindstrm.com/types">	
+      <service name="CorpDataServices" 
+           packageName="javasoap.book.ch11.client">	
+        <interface name="javasoap.book.ch11.services.IStockServiceProxy"	
+         servantName="javasoap.book.ch11.services.StockServiceProxyImpl"/>	
+      </service>	
+  </rmi>	
+</configuration>

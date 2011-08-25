@@ -1,0 +1,35 @@
+package javasoap.book.ch5;
+import java.net.*;
+import java.util.*;
+package javasoap.book.ch5;
+public class BasicTradingService {
+   
+   public BasicTradingService() {
+   }
+   public int getTotalVolume(String[] stocks) {
+      
+      // get the volumes for each stock from some
+      // data feed and return the total
+      
+      int total = 345000; 
+      return total;
+   }
+   public String executeTrade(Object[] params) {
+      String result;
+      try {
+         String stock = (String)params[0];
+         Integer numShares = (Integer)params[1];
+         Boolean buy = (Boolean)params[2];
+         String orderType = "Buy";
+         if (false == buy.booleanValue()) {
+            orderType = "Sell";
+         }
+         result = (orderType + " " + numShares + " of " + stock);
+      }
+      catch (ClassCastException e) {
+         result = "Bad Parameter Type Encountered";
+      }
+      return result;
+   }
+}
+

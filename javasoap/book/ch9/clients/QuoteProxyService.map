@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mappings xmlns='http://www.themindelectric.com/schema/'>
+  <schema xmlns='http://www.w3.org/2001/XMLSchema' 
+      targetNamespace='urn:QuoteProxyService' 
+      xmlns:electric='http://www.themindelectric.com/schema/'>
+    <complexType 
+          name='Quote' 
+          electric:class='javasoap.book.ch9.clients.ProxyQuote'>
+      <sequence>
+        <element name='stockSymbol' nillable='true' 
+                 electric:field='stockSymbol' type='string'/>
+        <element name='vol' 
+                 electric:field='vol' type='long'/>
+        <element name='last' 
+                 electric:field='last' type='float'/>
+        <element name='diff' 
+                 electric:field='diff' type='float'/>
+        <element name='time' nillable='true' 
+                 electric:field='time' type='string'/>
+      </sequence>
+    </complexType>
+  </schema>
+</mappings>

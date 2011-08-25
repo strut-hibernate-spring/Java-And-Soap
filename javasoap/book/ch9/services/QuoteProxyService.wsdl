@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions 
+name='urn:QuoteProxyService' 
+targetNamespace='urn:QuoteProxyService' 
+xmlns:tns='urn:QuoteProxyService' 
+xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:http='http://schemas.xmlsoap.org/wsdl/http/' xmlns:mime='http://schemas.xmlsoap.org/wsdl/mime/' 
+xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/' xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/' 
+xmlns='http://schemas.xmlsoap.org/wsdl/'>
+  <types>
+    <schema xmlns='http://www.w3.org/2001/XMLSchema' 
+       xmlns:tns='urn:QuoteProxyService' 
+       targetNamespace='urn:QuoteProxyService'>
+      <complexType name='Quote'>
+        <sequence>
+          <element name='stockSymbol' nillable='true' type='string'/>
+          <element name='last' type='float'/>
+          <element name='diff' type='float'/>
+          <element name='time' nillable='true' type='string'/>
+          <element name='vol' type='long'/>
+        </sequence>
+      </complexType>
+      <complexType name='ArrayOfQuote'>
+        <complexContent>
+          <restriction base='soapenc:Array'>
+            <attribute ref='soapenc:arrayType' 
+                 wsdl:arrayType='tns:Quote[]'/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+    <schema xmlns='http://www.w3.org/2001/XMLSchema' 
+        xmlns:tns='urn:QuoteProxyService' 
+        targetNamespace='urn:QuoteProxyService'>
+      <complexType name='ArrayOfstring'>
+        <complexContent>
+          <restriction base='soapenc:Array'>
+            <attribute ref='soapenc:arrayType' wsdl:arrayType='string[]'/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+  </types>
+  <message name='getQuotes0SoapIn'>
+    <part name='arg0' 
+       xmlns:ns1='urn:QuoteProxyService' type='ns1:ArrayOfstring'/>
+  </message>
+  <message name='getQuotes0SoapOut'>
+    <part name='Result' 
+       xmlns:ns1='urn:QuoteProxyService' type='ns1:ArrayOfQuote'/>
+  </message>
+  <portType name='QuoteProxyServiceSoap'>
+    <operation name='getQuotes' parameterOrder='arg0'>
+      <input name='getQuotes0SoapIn' message='tns:getQuotes0SoapIn'/>
+      <output name='getQuotes0SoapOut' message='tns:getQuotes0SoapOut'/>
+    </operation>
+  </portType>
+  <binding name='QuoteProxyServiceSoap' type='tns:QuoteProxyServiceSoap'>
+    <soap:binding style='rpc' 
+        transport='http://schemas.xmlsoap.org/soap/http'/>
+    <operation name='getQuotes'>
+      <soap:operation soapAction='getQuotes' style='rpc'/>
+      <input name='getQuotes0SoapIn'>
+        <soap:body use='encoded' namespace='urn:QuoteProxyService' 
+             encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+      </input>
+      <output name='getQuotes0SoapOut'>
+        <soap:body use='encoded' namespace='urn:QuoteProxyService' 
+             encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+      </output>
+    </operation>
+  </binding>
+  <service name='QuoteProxyService'>
+    <port name='QuoteProxyServiceSoap' 
+            binding='tns:QuoteProxyServiceSoap'>
+      <soap:address 
+            location='http://georgetown:8080/soap/servlet/rpcrouter'/>
+    </port>
+  </service>
+</definitions>

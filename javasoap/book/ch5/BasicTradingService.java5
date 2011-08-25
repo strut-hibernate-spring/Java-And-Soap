@@ -1,0 +1,50 @@
+package javasoap.book.ch5;
+public class BasicTradingService {
+   
+   public BasicTradingService() {
+   }
+   public String executeStockTrade(StockTrade_ServerSide trade) {
+      Object[] params = new Object[3];
+      params[0] = trade.getSymbol();
+      params[1] = new Integer(trade.getNumShares());
+      params[2] = new Boolean(trade.isBuy());
+      return executeTrade(params);
+   }
+   public String[] getMostActive() {
+   
+      // get the most actively traded stocks
+      String[] actives = { "ABC", "DEF", "GHI", "JKL" };
+      return actives;
+   }
+   public int getTotalVolume(String[] stocks) {
+      
+      // get the volumes for each stock from some
+      // data feed and return the total
+      
+      int total = 345000; 
+      return total;
+   }
+   public String executeTrade(Object[] params) {
+      String result;
+      try {
+         String stock = (String)params[0];
+         Integer numShares = (Integer)params[1];
+         Boolean buy = (Boolean)params[2];
+         String orderType = "Buy";
+         if (false == buy.booleanValue()) {
+            orderType = "Sell";
+         }
+         result = (orderType + " " + numShares + " of " + stock);
+      }
+      catch (ClassCastException e) {
+         result = "Bad Parameter Type Encountered";
+      }
+      return result;
+   }
+   public HighLow_ServerSide getHighLow(String stock) {
+      
+      // retrieve the high and low for the specified stock
+      return new HighLow_ServerSide((float)110.375, 
+                      (float)109.5);
+   }
+}

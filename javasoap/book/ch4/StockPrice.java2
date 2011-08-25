@@ -1,0 +1,26 @@
+package javasoap.book.ch4;
+import electric.util.holder.*;
+import electric.util.holder.java.lang.*;
+public class StockPrice {
+   public float getPrice(String stock, String currency) {
+      float result;
+      // determine the price for stock and return it
+      // in the specified currency
+      result = (float)75.33;
+      return result;
+   }
+   public boolean getOutPrice(String stock, String currency,
+                      floatOut price) {
+      try {
+         price.value = getPrice(stock, currency);
+         return true;
+      }
+      catch (Exception e) {
+         return false;
+      }
+   }
+   public boolean correctSymbol(StringInOut symbol) {
+      symbol.value = symbol.value.toUpperCase();
+      return true;
+   }
+}

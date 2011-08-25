@@ -1,0 +1,9 @@
+package javasoap.book.ch5.client;
+public class HighLow_ServerSide {
+  public float _high;
+  public float _low;
+  public String toString() {
+     return "High: " + _high +
+        " Low: " + _low;
+  }  
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?> 	
+	
+ <!DOCTYPE web-app PUBLIC 	
+     "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"	
+     "http://java.sun.com/j2ee/dtds/web-app_2_3.dtd"> 	
+	
+<web-app> 	
+   <display-name>CorpDataServices</display-name> 	
+   <description>Corporate Data Services</description> 	
+   <servlet> 	
+      <servlet-name>JAXRPCEndpoint</servlet-name> 	
+      <display-name>JAXRPCEndpoint</display-name> 	
+      <description>	
+         Endpoint for Corporate Data Services Application	
+      </description> 	
+      <servlet-class>	
+        com.sun.xml.rpc.server.http.JAXRPCServlet	
+      </servlet-class> 	
+      <init-param> 	
+         <param-name>configuration.file</param-name> 	
+         <param-value>	
+          /WEB-INF/CorpDataServicesProxy_Config.properties	
+        </param-value> 	
+      </init-param> 	
+      <load-on-startup>0</load-on-startup> 	
+   </servlet> 	
+   <servlet-mapping> 	
+      <servlet-name>JAXRPCEndpoint</servlet-name> 	
+      <url-pattern>/jaxrpc/*</url-pattern> 	
+   </servlet-mapping> 	
+   <session-config> 	
+      <session-timeout>60</session-timeout> 	
+   </session-config> 	
+</web-app>

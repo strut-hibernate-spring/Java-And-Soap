@@ -1,0 +1,9 @@
+package javasoap.book.ch4;
+import electric.util.holder.*;
+import electric.util.holder.java.lang.*;
+public interface IStockPriceService {
+  float getPrice(String stock, String currency);
+  public boolean getOutPrice(String stock, String currency,
+                      floatOut price);
+  public boolean correctSymbol(StringInOut symbol);
+}
